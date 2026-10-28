@@ -4,7 +4,7 @@ Wiki do jogo Multiverso em Colapso (heróis, inimigos, como jogar, controles e n
 
 Endereço: https://fstlopes.github.io/multiverso-ranking/
 
-Os números da wiki saíram do código da v0.75. O ranking vem do Supabase (tabela `ranking`), lido com a chave pública do projeto.
+Os números da wiki saíram do código da v0.76. O ranking vem do Supabase (tabela `ranking`), lido com a chave pública do projeto.
 
 ## Onde fica cada coisa
 
@@ -24,3 +24,7 @@ Os números da wiki saíram do código da v0.75. O ranking vem do Supabase (tabe
 | `img/fundos`, `img/herois`, `img/inimigos`, `img/interface` | Imagens tiradas do jogo |
 
 Para testar no PC, abra com um servidor local (por exemplo `python -m http.server`), porque as páginas são carregadas com `fetch` e não abrem direto do arquivo.
+
+## Regra de atualização
+
+Sempre que sair uma versão nova do jogo, a wiki é atualizada junto: a página Novidades, os números em `js/dados/`, Como jogar, Controles e a versão no rodapé (`index.html`).

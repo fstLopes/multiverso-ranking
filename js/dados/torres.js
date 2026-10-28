@@ -1,4 +1,4 @@
-// Heróis (torres) com os valores da v0.75 do jogo.
+// Heróis (torres) com os valores da v0.76 do jogo.
 // Quando o jogo mudar, atualize aqui.
 
 const TORRES = [
