@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranking · Multiverso em Colapso</title>
+<meta name="description" content="Ranking online ao vivo do Multiverso em Colapso">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+	:root {
+		--bg: #1a1226;
+		--panel: #2e2140;
+		--panel-light: #3d2c55;
+		--text: #ffffff;
+		--muted: #b9a8cc;
+		--accent: #4fd8ff;
+		--gold: #c48cff;
+		--top1: #ffd45c;
+		--top2: #dfe6f0;
+		--top3: #e3a36b;
+		--live: #5be86b;
+		--warn: #ffba46;
+	}
+	* { box-sizing: border-box; }
+	[hidden] { display: none !important; }
+	body {
+		margin: 0;
+		min-height: 100vh;
+		background:
+			radial-gradient(circle at 20% 0%, rgba(79, 216, 255, 0.12), transparent 45%),
+			radial-gradient(circle at 90% 30%, rgba(196, 140, 255, 0.14), transparent 50%),
+			var(--bg);
+		color: var(--text);
+		font-family: "Nunito", system-ui, sans-serif;
+	}
+	main {
+		max-width: 760px;
+		margin: 0 auto;
+		padding: 32px 16px 48px;
+	}
+	header { text-align: center; margin-bottom: 24px; }
+	h1 {
+		font-family: "Bangers", "Nunito", sans-serif;
+		font-weight: 400;
+		letter-spacing: 2px;
+		font-size: clamp(36px, 8vw, 60px);
+		line-height: 1;
+		margin: 0;
+		text-shadow: 3px 3px 0 #000, 0 0 24px rgba(79, 216, 255, 0.35);
+	}
+	.subtitle { color: var(--muted); margin: 10px 0 0; font-size: 16px; }
+	.status {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-top: 14px;
+		padding: 6px 14px;
+		border-radius: 999px;
+		background: var(--panel);
+		color: var(--muted);
+		font-size: 14px;
+	}
+	.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); }
+	.status.live .dot { background: var(--live); box-shadow: 0 0 0 0 rgba(91, 232, 107, 0.7); animation: pulse 1.8s infinite; }
+	.status.erro .dot { background: var(--warn); }
+	@keyframes pulse {
+		70% { box-shadow: 0 0 0 9px rgba(91, 232, 107, 0); }
+		100% { box-shadow: 0 0 0 0 rgba(91, 232, 107, 0); }
+	}
+	.tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
+	.tabs button {
+		font: inherit;
+		font-weight: 800;
+		color: var(--muted);
+		background: var(--panel);
+		border: 2px solid var(--panel-light);
+		border-radius: 10px;
+		padding: 8px 16px;
+		cursor: pointer;
+	}
+	.tabs button[aria-selected="true"] { color: var(--text); border-color: var(--accent); }
+	.board {
+		background: #fff;
+		color: #181222;
+		border: 4px solid #000;
+		border-radius: 6px;
+		box-shadow: 8px 8px 0 #000;
+		overflow: hidden;
+	}
+	table { width: 100%; border-collapse: collapse; }
+	th {
+		text-align: left;
+		font-size: 13px;
+		letter-spacing: 1px;
+		color: #625a72;
+		padding: 12px 14px;
+		border-bottom: 3px solid #000;
+		background: #f1ecf7;
+	}
+	td { padding: 12px 14px; font-size: 18px; font-weight: 700; border-bottom: 1px solid #e4dcee; }
+	tr:last-child td { border-bottom: 0; }
+	tbody tr:nth-child(even) td { background: #faf8fc; }
+	.num { text-align: right; font-variant-numeric: tabular-nums; }
+	.pos { width: 64px; text-align: center; }
+	.medal {
+		display: inline-grid;
+		place-items: center;
+		width: 34px; height: 34px;
+		border-radius: 50%;
+		border: 3px solid #000;
+		font-family: "Bangers", sans-serif;
+		font-weight: 400;
+		font-size: 20px;
+	}
+	.p1 .medal { background: var(--top1); }
+	.p2 .medal { background: var(--top2); }
+	.p3 .medal { background: var(--top3); }
+	.name { overflow-wrap: anywhere; }
+	.when { display: block; font-size: 12px; font-weight: 400; color: #8a8199; }
+	tr.novo td { animation: flash 2.4s ease-out; }
+	@keyframes flash { 0% { background: #d9f7ff; } 100% { background: inherit; } }
+	.empty { padding: 40px 16px; text-align: center; color: #625a72; font-size: 18px; }
+	footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 28px; line-height: 1.6; }
+	@media (max-width: 520px) {
+		td { padding: 10px 8px; font-size: 16px; }
+		th { padding: 10px 8px; }
+		.pos { width: 48px; }
+		.medal { width: 28px; height: 28px; font-size: 17px; }
+		.col-frag { display: none; }
+	}
+</style>
+</head>
+<body>
+<main>
+	<header>
+		<h1>MULTIVERSO EM COLAPSO</h1>
+		<p class="subtitle">Ranking online: quem segurou o Clichê por mais ondas</p>
+		<div class="status" id="status"><span class="dot"></span><span id="status-text">Conectando...</span></div>
+	</header>
+
+	<nav class="tabs" id="tabs" role="tablist"></nav>
+
+	<section class="board">
+		<table>
+			<thead>
+				<tr>
+					<th class="pos">#</th>
+					<th>JOGADOR</th>
+					<th class="num">ONDA</th>
+					<th class="num col-frag">FRAGMENTOS</th>
+				</tr>
+			</thead>
+			<tbody id="rows"></tbody>
+		</table>
+		<div class="empty" id="empty" hidden></div>
+	</section>
+
+	<footer>
+		A melhor partida de cada jogador. Empate na onda: vence quem terminou com mais fragmentos.<br>
+		Para aparecer aqui, crie uma conta no jogo e jogue.
+	</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+	// Mesmo projeto e mesma chave PÚBLICA que o jogo usa. Ela só deixa ler o
+	// ranking; gravar passa pelas funções do servidor, que conferem a sessão.
+	const URL_SUPABASE = "https://bslctwsfhdcjgxxktghb.supabase.co";
+	const CHAVE_PUBLICA = "sb_publishable_HlTDZN1LGZ2ev_jnXrz6OA_E13Ogdii";
+	const LIMITE = 50;
+
+	const DIMENSOES = [
+		{ id: "metropolis", nome: "Metrópolis Prime" },
+	];
+
+	let dimensao = DIMENSOES[0].id;
+	let ultimaLista = [];
+	let ultimaAtualizacao = null;
+	const novos = new Set();
+
+	const el = (id) => document.getElementById(id);
+
+	function setStatus(tipo, texto) {
+		el("status").className = "status " + tipo;
+		el("status-text").textContent = texto;
+	}
+
+	function quando(iso) {
+		const d = new Date(iso);
+		const seg = (Date.now() - d.getTime()) / 1000;
+		if (seg < 60) return "agora há pouco";
+		if (seg < 3600) return "há " + Math.floor(seg / 60) + " min";
+		if (seg < 86400) return "há " + Math.floor(seg / 3600) + " h";
+		return d.toLocaleDateString("pt-BR");
+	}
+
+	function render() {
+		const corpo = el("rows");
+		corpo.textContent = "";
+		el("empty").hidden = ultimaLista.length > 0;
+		if (ultimaLista.length === 0) {
+			el("empty").textContent = "Ninguém no ranking ainda. Seja o primeiro!";
+		}
+		const fmt = new Intl.NumberFormat("pt-BR");
+		ultimaLista.forEach((r, i) => {
+			const tr = document.createElement("tr");
+			if (i < 3) tr.className = "p" + (i + 1);
+			if (novos.has(r.jogador_id)) tr.classList.add("novo");
+
+			const pos = document.createElement("td");
+			pos.className = "pos";
+			if (i < 3) {
+				const m = document.createElement("span");
+				m.className = "medal";
+				m.textContent = i + 1;
+				pos.appendChild(m);
+			} else {
+				pos.textContent = i + 1;
+			}
+
+			const nome = document.createElement("td");
+			nome.className = "name";
+			nome.textContent = r.apelido;
+			const w = document.createElement("span");
+			w.className = "when";
+			w.textContent = quando(r.conquistado_em);
+			nome.appendChild(w);
+
+			const onda = document.createElement("td");
+			onda.className = "num";
+			onda.textContent = r.onda;
+
+			const frag = document.createElement("td");
+			frag.className = "num col-frag";
+			frag.textContent = fmt.format(r.fragmentos);
+
+			tr.append(pos, nome, onda, frag);
+			corpo.appendChild(tr);
+		});
+		novos.clear();
+	}
+
+	function renderTabs() {
+		const nav = el("tabs");
+		nav.hidden = DIMENSOES.length < 2;
+		nav.textContent = "";
+		DIMENSOES.forEach((d) => {
+			const b = document.createElement("button");
+			b.role = "tab";
+			b.textContent = d.nome;
+			b.setAttribute("aria-selected", d.id === dimensao);
+			b.onclick = () => { dimensao = d.id; renderTabs(); carregar(); };
+			nav.appendChild(b);
+		});
+	}
+
+	async function carregar() {
+		const q = new URLSearchParams({
+			select: "jogador_id,apelido,onda,fragmentos,conquistado_em",
+			dimensao: "eq." + dimensao,
+			order: "onda.desc,fragmentos.desc,conquistado_em.asc",
+			limit: String(LIMITE),
+		});
+		try {
+			const resp = await fetch(URL_SUPABASE + "/rest/v1/ranking?" + q, {
+				headers: { apikey: CHAVE_PUBLICA },
+			});
+			if (!resp.ok) throw new Error("HTTP " + resp.status);
+			const lista = await resp.json();
+			// marca quem entrou ou melhorou desde a última leitura
+			if (ultimaAtualizacao) {
+				const antes = new Map(ultimaLista.map((r) => [r.jogador_id, r.conquistado_em]));
+				lista.forEach((r) => { if (antes.get(r.jogador_id) !== r.conquistado_em) novos.add(r.jogador_id); });
+			}
+			ultimaLista = lista;
+			ultimaAtualizacao = new Date();
+			render();
+			if (!el("status").classList.contains("live")) setStatus("", "Atualizado");
+		} catch (e) {
+			setStatus("erro", "Sem conexão com o servidor. Tentando de novo...");
+		}
+	}
+
+	// Tempo real: o servidor avisa a cada recorde novo e a lista recarrega.
+	// Conexões públicas de tempo real caem depois de algumas horas, então a
+	// página também recarrega sozinha a cada 30 segundos.
+	function conectarAoVivo() {
+		if (!window.supabase) return;
+		const cliente = window.supabase.createClient(URL_SUPABASE, CHAVE_PUBLICA);
+		cliente
+			.channel("ranking-ao-vivo")
+			.on("postgres_changes", { event: "*", schema: "public", table: "ranking" }, () => carregar())
+			.subscribe((estado) => {
+				if (estado === "SUBSCRIBED") setStatus("live", "Ao vivo");
+				else if (estado === "CHANNEL_ERROR" || estado === "TIMED_OUT" || estado === "CLOSED") {
+					setStatus("", "Atualizando a cada 30 s");
+				}
+			});
+	}
+
+	renderTabs();
+	carregar();
+	conectarAoVivo();
+	setInterval(carregar, 30000);
+	document.addEventListener("visibilitychange", () => { if (!document.hidden) carregar(); });
+</script>
+</body>
+</html>
