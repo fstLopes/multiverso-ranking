@@ -1,7 +1,7 @@
-# Multiverso em Colapso: ranking online
+# Multiverso em Colapso: wiki e ranking online
 
-Site com o ranking online do jogo Multiverso em Colapso, atualizado ao vivo.
+Wiki do jogo Multiverso em Colapso (heróis, inimigos, como jogar, controles e novidades) com o ranking online ao vivo.
 
 Endereço: https://fstlopes.github.io/multiverso-ranking/
 
-Os dados vêm do Supabase (tabela `ranking`), lidos com a chave pública do projeto.
+Os números da wiki saíram do código da v0.75. O ranking vem do Supabase (tabela `ranking`), lido com a chave pública do projeto.
