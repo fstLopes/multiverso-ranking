@@ -1,0 +1,46 @@
+/* Base: cores do jogo, fonte, fundo e reset */
+
+:root {
+	--bg: #1a1226;
+	--panel: #2e2140;
+	--ink: #181222;
+	--ink-muted: #625a72;
+	--line: #e7e0ef;
+	--text: #ffffff;
+	--muted: #b9a8cc;
+	--accent: #4fd8ff;
+	--lilac: #c48cff;
+	--live: #5be86b;
+	--warn: #ffba46;
+	--star: #ffc83d;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--bg); scroll-padding-top: 80px; }
+body {
+	margin: 0;
+	min-height: 100vh;
+	color: var(--text);
+	font-family: "Poppins", system-ui, sans-serif;
+	font-weight: 700;
+	overflow-x: hidden;
+}
+a { color: inherit; }
+
+/* --- fundo: a ilustração do menu do jogo --- */
+.bg {
+	position: fixed;
+	inset: 0;
+	z-index: -2;
+	background: url("../img/fundos/spr_MenuBG.jpg") center top / cover no-repeat;
+	animation: respira 18s ease-in-out infinite alternate;
+}
+.bg::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(26, 18, 38, var(--veu, 0.86));
+	transition: background 0.4s;
+}
+body[data-page="inicio"] { --veu: 0.45; }
+@keyframes respira { from { transform: scale(1); } to { transform: scale(1.06); } }

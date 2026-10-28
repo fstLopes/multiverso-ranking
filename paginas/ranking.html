@@ -1,0 +1,47 @@
+	<div class="rank-wrap">
+		<div class="rank-head">
+			<h1 class="page-title">RANKING</h1>
+			<p class="page-sub sub-ranking">Quem segurou o Clichê por mais ondas</p>
+			<div class="status" id="status"><span class="dot"></span><span id="status-text">CONECTANDO...</span></div>
+		</div>
+
+		<div class="stage">
+			<div class="squad herois" aria-hidden="true">
+				<img src="img/herois/spr_Tower_Arauto.png" width="126" height="126" alt="">
+				<img src="img/herois/spr_Tower_DonaBala.png" width="138" height="138" alt="">
+				<img src="img/herois/spr_Tower_Impacto.png" width="110" height="110" alt="">
+			</div>
+			<div class="squad viloes" aria-hidden="true">
+				<img src="img/inimigos/spr_Enemy_Clone.png" width="120" height="120" alt="">
+				<img src="img/inimigos/spr_Boss_Catalisador.png" width="150" height="150" alt="">
+				<img src="img/inimigos/spr_Enemy_Explicador.png" width="140" height="140" alt="">
+			</div>
+
+			<section class="podium-panel" aria-label="Os três primeiros">
+				<div class="podium-title">METRÓPOLIS PRIME</div>
+				<div class="place p2" id="place-2"></div>
+				<div class="place p1" id="place-1"></div>
+				<div class="place p3" id="place-3"></div>
+			</section>
+
+			<div class="panel board" id="board">
+				<table>
+					<thead>
+						<tr>
+							<th class="pos">#</th>
+							<th>JOGADOR</th>
+							<th class="num">ONDA</th>
+							<th class="num col-frag">FRAGMENTOS</th>
+						</tr>
+					</thead>
+					<tbody id="rows"></tbody>
+				</table>
+				<div class="empty" id="empty" hidden></div>
+			</div>
+		</div>
+
+		<footer class="site">
+			A melhor partida de cada jogador. Empate na onda: vence quem terminou com mais fragmentos.<br>
+			Para aparecer aqui, crie uma conta no jogo e jogue.
+		</footer>
+	</div>
