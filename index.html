@@ -5,157 +5,320 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ranking · Multiverso em Colapso</title>
 <meta name="description" content="Ranking online ao vivo do Multiverso em Colapso">
+<link rel="icon" href="img/spr_Star.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
 <style>
 	:root {
 		--bg: #1a1226;
 		--panel: #2e2140;
-		--panel-light: #3d2c55;
+		--ink: #181222;
+		--ink-muted: #625a72;
 		--text: #ffffff;
 		--muted: #b9a8cc;
 		--accent: #4fd8ff;
-		--gold: #c48cff;
-		--top1: #ffd45c;
-		--top2: #dfe6f0;
-		--top3: #e3a36b;
+		--lilac: #c48cff;
 		--live: #5be86b;
 		--warn: #ffba46;
+		--star: #ffc83d;
 	}
 	* { box-sizing: border-box; }
 	[hidden] { display: none !important; }
+	html { background: var(--bg); }
 	body {
 		margin: 0;
 		min-height: 100vh;
-		background:
-			radial-gradient(circle at 20% 0%, rgba(79, 216, 255, 0.12), transparent 45%),
-			radial-gradient(circle at 90% 30%, rgba(196, 140, 255, 0.14), transparent 50%),
-			var(--bg);
 		color: var(--text);
 		font-family: "Nunito", system-ui, sans-serif;
+		overflow-x: hidden;
 	}
+
+	/* --- fundo: a ilustração do menu, com o véu escuro do jogo --- */
+	.bg {
+		position: fixed;
+		inset: 0;
+		z-index: -2;
+		background: url("img/spr_MenuBG.jpg") center top / cover no-repeat;
+		animation: respira 18s ease-in-out infinite alternate;
+	}
+	.bg::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(26, 18, 38, 0.35) 0%, rgba(26, 18, 38, 0.72) 38%, rgba(26, 18, 38, 0.9) 100%);
+	}
+	@keyframes respira {
+		from { transform: scale(1); }
+		to { transform: scale(1.06); }
+	}
+
 	main {
-		max-width: 760px;
+		position: relative;
+		max-width: 820px;
 		margin: 0 auto;
-		padding: 32px 16px 48px;
+		padding: clamp(150px, 22vw, 260px) 16px 56px;
 	}
-	header { text-align: center; margin-bottom: 24px; }
+
+	/* --- título em letra de quadrinho --- */
+	header { text-align: center; margin-bottom: 18px; }
 	h1 {
-		font-family: "Bangers", "Nunito", sans-serif;
+		font-family: "Bangers", sans-serif;
 		font-weight: 400;
-		letter-spacing: 2px;
-		font-size: clamp(36px, 8vw, 60px);
-		line-height: 1;
+		font-size: clamp(54px, 12vw, 92px);
+		letter-spacing: 3px;
+		line-height: 0.95;
 		margin: 0;
-		text-shadow: 3px 3px 0 #000, 0 0 24px rgba(79, 216, 255, 0.35);
+		color: #fff;
+		text-shadow: 4px 4px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+		transform: rotate(-2deg);
 	}
-	.subtitle { color: var(--muted); margin: 10px 0 0; font-size: 16px; }
+	.subtitle {
+		margin: 10px 0 0;
+		font-weight: 800;
+		font-size: 17px;
+		color: var(--muted);
+		text-shadow: 0 2px 0 #000;
+	}
+
+	/* selo de status: AO VIVO, atualizando ou sem conexão */
 	.status {
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		margin-top: 14px;
-		padding: 6px 14px;
-		border-radius: 999px;
-		background: var(--panel);
-		color: var(--muted);
+		margin-top: 16px;
+		padding: 6px 16px 6px 12px;
+		background: #fff;
+		color: var(--ink);
+		font-weight: 900;
 		font-size: 14px;
+		letter-spacing: 1px;
+		border: 3px solid #000;
+		box-shadow: 3px 3px 0 #000;
+		transform: skewX(-8deg);
 	}
-	.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); }
-	.status.live .dot { background: var(--live); box-shadow: 0 0 0 0 rgba(91, 232, 107, 0.7); animation: pulse 1.8s infinite; }
+	.status > * { transform: skewX(8deg); }
+	.dot { width: 11px; height: 11px; border-radius: 50%; background: #9a93a6; border: 2px solid #000; }
+	.status.live .dot { background: var(--live); animation: pulso 1.6s infinite; }
 	.status.erro .dot { background: var(--warn); }
-	@keyframes pulse {
+	@keyframes pulso {
+		0% { box-shadow: 0 0 0 0 rgba(91, 232, 107, 0.8); }
 		70% { box-shadow: 0 0 0 9px rgba(91, 232, 107, 0); }
 		100% { box-shadow: 0 0 0 0 rgba(91, 232, 107, 0); }
 	}
-	.tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
+
+	/* --- abas no formato dos botões do jogo --- */
+	.tabs { display: flex; gap: 14px; justify-content: center; margin: 20px 0 6px; flex-wrap: wrap; }
 	.tabs button {
-		font: inherit;
-		font-weight: 800;
-		color: var(--muted);
-		background: var(--panel);
-		border: 2px solid var(--panel-light);
-		border-radius: 10px;
-		padding: 8px 16px;
+		font: 900 16px "Nunito", sans-serif;
+		letter-spacing: 1px;
+		color: var(--ink);
+		background: #fff;
+		border: 4px solid #000;
+		box-shadow: 4px 4px 0 #000;
+		padding: 8px 22px;
+		transform: skewX(-8deg);
 		cursor: pointer;
 	}
-	.tabs button[aria-selected="true"] { color: var(--text); border-color: var(--accent); }
-	.board {
-		background: #fff;
-		color: #181222;
-		border: 4px solid #000;
-		border-radius: 6px;
-		box-shadow: 8px 8px 0 #000;
+	.tabs button[aria-selected="true"] { background: var(--accent); }
+
+	/* --- pódio dentro do painel desenhado do jogo --- */
+	.stage { position: relative; margin-top: 18px; }
+	.podium-panel {
+		position: relative;
+		aspect-ratio: 1273 / 695;
+		background: url("img/spr_PanelRanking.png") center / 100% 100% no-repeat;
+		/* a área branca da arte vai de 7% a 93% na largura e de 4% a 96% na altura */
+		padding: 21% 14% 10%;
+		display: grid;
+		grid-template-columns: 1fr 1.25fr 1fr;
+		align-items: end;
+		gap: 3%;
+		color: var(--ink);
+	}
+	.podium-title {
+		position: absolute;
+		top: 15%;
+		left: 0;
+		right: 0;
+		text-align: center;
+		font-family: "Bangers", sans-serif;
+		font-size: clamp(15px, 3vw, 26px);
+		letter-spacing: 2px;
+		color: var(--ink-muted);
+	}
+	.place {
+		text-align: center;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.place img.star { width: clamp(30px, 6vw, 52px); height: auto; filter: drop-shadow(2px 2px 0 #000); }
+	.place.p1 img.star { width: clamp(46px, 9.5vw, 84px); }
+	.place .rank {
+		font-family: "Bangers", sans-serif;
+		font-size: clamp(16px, 3.2vw, 28px);
+		line-height: 1;
+		margin-top: 2px;
+	}
+	.place .who {
+		font-weight: 900;
+		font-size: clamp(13px, 2.6vw, 22px);
+		max-width: 100%;
 		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.place.p1 .who { font-size: clamp(15px, 3.2vw, 27px); }
+	.place .stat { font-weight: 800; font-size: clamp(11px, 2vw, 16px); color: var(--ink-muted); }
+	.place .stat b { color: var(--ink); }
+	.place.vazio .who { color: #b5aec0; }
+	.place .base {
+		width: 100%;
+		margin-top: 6px;
+		border: 3px solid #000;
+		background: repeating-linear-gradient(-45deg, #fff 0 6px, #e9e4f0 6px 8px);
+	}
+	.p1 .base { height: clamp(14px, 3vw, 28px); background: var(--star); }
+	.p2 .base { height: clamp(10px, 2vw, 18px); background: #dfe6f0; }
+	.p3 .base { height: clamp(6px, 1.2vw, 10px); background: #e3a36b; }
+
+	/* --- resto da lista: painel de quadrinho em CSS --- */
+	.board {
+		position: relative;
+		margin-top: 22px;
+		background: #fff;
+		color: var(--ink);
+		border: 4px solid #000;
+		box-shadow: 7px 7px 0 #000;
+		transform: rotate(-0.6deg);
 	}
 	table { width: 100%; border-collapse: collapse; }
 	th {
 		text-align: left;
 		font-size: 13px;
+		font-weight: 900;
 		letter-spacing: 1px;
-		color: #625a72;
-		padding: 12px 14px;
+		color: var(--ink-muted);
+		padding: 16px 14px 10px;
 		border-bottom: 3px solid #000;
-		background: #f1ecf7;
 	}
-	td { padding: 12px 14px; font-size: 18px; font-weight: 700; border-bottom: 1px solid #e4dcee; }
+	td { padding: 11px 14px; font-size: 18px; font-weight: 800; border-bottom: 1px solid #e7e0ef; }
+	tbody tr:nth-child(odd) td { background: #f8f5fb; }
 	tr:last-child td { border-bottom: 0; }
-	tbody tr:nth-child(even) td { background: #faf8fc; }
 	.num { text-align: right; font-variant-numeric: tabular-nums; }
-	.pos { width: 64px; text-align: center; }
-	.medal {
-		display: inline-grid;
-		place-items: center;
-		width: 34px; height: 34px;
-		border-radius: 50%;
-		border: 3px solid #000;
-		font-family: "Bangers", sans-serif;
-		font-weight: 400;
-		font-size: 20px;
-	}
-	.p1 .medal { background: var(--top1); }
-	.p2 .medal { background: var(--top2); }
-	.p3 .medal { background: var(--top3); }
+	.pos { width: 62px; text-align: center; font-family: "Bangers", sans-serif; font-weight: 400; font-size: 22px; }
 	.name { overflow-wrap: anywhere; }
-	.when { display: block; font-size: 12px; font-weight: 400; color: #8a8199; }
-	tr.novo td { animation: flash 2.4s ease-out; }
-	@keyframes flash { 0% { background: #d9f7ff; } 100% { background: inherit; } }
-	.empty { padding: 40px 16px; text-align: center; color: #625a72; font-size: 18px; }
-	footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 28px; line-height: 1.6; }
-	@media (max-width: 520px) {
+	.when { display: block; font-size: 12px; font-weight: 700; color: #8a8199; }
+	tr.novo td { animation: flash 2s ease-out; }
+	.place.novo .who { animation: flashtxt 2s ease-out; }
+	@keyframes flash { from { background: #c9f3ff; } }
+	@keyframes flashtxt { from { color: #0aa6d6; } }
+	.empty { padding: 34px 16px; text-align: center; color: var(--ink-muted); font-size: 18px; font-weight: 800; }
+
+	footer {
+		text-align: center;
+		color: var(--muted);
+		font-size: 14px;
+		font-weight: 700;
+		margin-top: 30px;
+		line-height: 1.6;
+		text-shadow: 0 1px 0 #000;
+	}
+
+	/* --- torres de um lado, inimigos do outro --- */
+	.squad {
+		position: absolute;
+		top: 30%;
+		display: flex;
+		flex-direction: column;
+		gap: 26px;
+		align-items: center;
+	}
+	.squad img {
+		image-rendering: pixelated;
+		filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.7));
+		animation: flutua 2.6s ease-in-out infinite alternate;
+	}
+	.squad img:nth-child(2) { animation-delay: -0.9s; }
+	.squad img:nth-child(3) { animation-delay: -1.7s; }
+	.squad.herois { left: -128px; }
+	.squad.viloes { right: -138px; }
+	.squad.viloes img { transform: scaleX(-1); }
+	@keyframes flutua {
+		from { translate: 0 0; }
+		to { translate: 0 -8px; }
+	}
+	.versus {
+		font-family: "Bangers", sans-serif;
+		font-size: 22px;
+		color: var(--accent);
+		text-shadow: 2px 2px 0 #000;
+	}
+
+	@media (max-width: 1100px) {
+		.squad { display: none; }
+	}
+	@media (max-width: 560px) {
 		td { padding: 10px 8px; font-size: 16px; }
-		th { padding: 10px 8px; }
-		.pos { width: 48px; }
-		.medal { width: 28px; height: 28px; font-size: 17px; }
+		th { padding: 14px 8px 8px; }
+		.pos { width: 44px; font-size: 19px; }
 		.col-frag { display: none; }
+		.podium-panel { padding: 22% 12% 10%; }
+		.place .stat.frag { display: none; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		*, *::before, *::after { animation: none !important; }
 	}
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"></div>
 <main>
 	<header>
-		<h1>MULTIVERSO EM COLAPSO</h1>
-		<p class="subtitle">Ranking online: quem segurou o Clichê por mais ondas</p>
-		<div class="status" id="status"><span class="dot"></span><span id="status-text">Conectando...</span></div>
+		<h1>RANKING</h1>
+		<p class="subtitle">Quem segurou o Clichê por mais ondas</p>
+		<div class="status" id="status"><span class="dot"></span><span id="status-text">CONECTANDO...</span></div>
 	</header>
 
 	<nav class="tabs" id="tabs" role="tablist"></nav>
 
-	<section class="board">
-		<table>
-			<thead>
-				<tr>
-					<th class="pos">#</th>
-					<th>JOGADOR</th>
-					<th class="num">ONDA</th>
-					<th class="num col-frag">FRAGMENTOS</th>
-				</tr>
-			</thead>
-			<tbody id="rows"></tbody>
-		</table>
-		<div class="empty" id="empty" hidden></div>
-	</section>
+	<div class="stage">
+		<div class="squad herois" aria-hidden="true">
+			<img src="img/spr_Tower_Arauto.png" width="126" height="126" alt="">
+			<img src="img/spr_Tower_DonaBala.png" width="138" height="138" alt="">
+			<img src="img/spr_Tower_Impacto.png" width="110" height="110" alt="">
+		</div>
+		<div class="squad viloes" aria-hidden="true">
+			<img src="img/spr_Enemy_Clone.png" width="120" height="120" alt="">
+			<img src="img/spr_Boss_Catalisador.png" width="150" height="150" alt="">
+			<img src="img/spr_Enemy_Explicador.png" width="140" height="140" alt="">
+		</div>
+
+		<section class="podium-panel" aria-label="Os três primeiros">
+			<div class="podium-title" id="podium-title">METRÓPOLIS PRIME</div>
+			<div class="place p2" id="place-2"></div>
+			<div class="place p1" id="place-1"></div>
+			<div class="place p3" id="place-3"></div>
+		</section>
+
+		<section class="board" id="board">
+			<table>
+				<thead>
+					<tr>
+						<th class="pos">#</th>
+						<th>JOGADOR</th>
+						<th class="num">ONDA</th>
+						<th class="num col-frag">FRAGMENTOS</th>
+					</tr>
+				</thead>
+				<tbody id="rows"></tbody>
+			</table>
+			<div class="empty" id="empty" hidden></div>
+		</section>
+	</div>
 
 	<footer>
 		A melhor partida de cada jogador. Empate na onda: vence quem terminou com mais fragmentos.<br>
@@ -177,8 +340,9 @@
 
 	let dimensao = DIMENSOES[0].id;
 	let ultimaLista = [];
-	let ultimaAtualizacao = null;
+	let jaCarregou = false;
 	const novos = new Set();
+	const fmt = new Intl.NumberFormat("pt-BR");
 
 	const el = (id) => document.getElementById(id);
 
@@ -196,49 +360,68 @@
 		return d.toLocaleDateString("pt-BR");
 	}
 
-	function render() {
+	function novoEl(tag, classe, texto) {
+		const e = document.createElement(tag);
+		if (classe) e.className = classe;
+		if (texto !== undefined) e.textContent = texto;
+		return e;
+	}
+
+	// pódio: 1º no meio, 2º à esquerda, 3º à direita
+	function renderPodio() {
+		for (let i = 0; i < 3; i++) {
+			const r = ultimaLista[i];
+			const caixa = el("place-" + (i + 1));
+			caixa.textContent = "";
+			caixa.classList.toggle("vazio", !r);
+			caixa.classList.toggle("novo", !!r && novos.has(r.jogador_id));
+
+			const estrela = novoEl("img", "star");
+			estrela.src = "img/spr_Star.png";
+			estrela.alt = "";
+			caixa.append(estrela, novoEl("div", "rank", "#" + (i + 1)));
+
+			if (r) {
+				caixa.append(novoEl("div", "who", r.apelido));
+				const onda = novoEl("div", "stat", "onda ");
+				onda.append(novoEl("b", "", r.onda));
+				const frag = novoEl("div", "stat frag", fmt.format(r.fragmentos) + " fragmentos");
+				caixa.append(onda, frag);
+			} else {
+				caixa.append(novoEl("div", "who", "vaga aberta"));
+			}
+			caixa.append(novoEl("div", "base"));
+		}
+	}
+
+	function renderLista() {
 		const corpo = el("rows");
 		corpo.textContent = "";
-		el("empty").hidden = ultimaLista.length > 0;
-		if (ultimaLista.length === 0) {
-			el("empty").textContent = "Ninguém no ranking ainda. Seja o primeiro!";
-		}
-		const fmt = new Intl.NumberFormat("pt-BR");
-		ultimaLista.forEach((r, i) => {
-			const tr = document.createElement("tr");
-			if (i < 3) tr.className = "p" + (i + 1);
+		const resto = ultimaLista.slice(3);
+		el("board").hidden = resto.length === 0 && ultimaLista.length > 0;
+		el("empty").hidden = !jaCarregou || ultimaLista.length > 0;
+		el("empty").textContent = "Ninguém no ranking ainda. Seja o primeiro!";
+
+		resto.forEach((r, j) => {
+			const tr = novoEl("tr");
 			if (novos.has(r.jogador_id)) tr.classList.add("novo");
 
-			const pos = document.createElement("td");
-			pos.className = "pos";
-			if (i < 3) {
-				const m = document.createElement("span");
-				m.className = "medal";
-				m.textContent = i + 1;
-				pos.appendChild(m);
-			} else {
-				pos.textContent = i + 1;
-			}
+			const nome = novoEl("td", "name", r.apelido);
+			nome.append(novoEl("span", "when", quando(r.conquistado_em)));
 
-			const nome = document.createElement("td");
-			nome.className = "name";
-			nome.textContent = r.apelido;
-			const w = document.createElement("span");
-			w.className = "when";
-			w.textContent = quando(r.conquistado_em);
-			nome.appendChild(w);
-
-			const onda = document.createElement("td");
-			onda.className = "num";
-			onda.textContent = r.onda;
-
-			const frag = document.createElement("td");
-			frag.className = "num col-frag";
-			frag.textContent = fmt.format(r.fragmentos);
-
-			tr.append(pos, nome, onda, frag);
+			tr.append(
+				novoEl("td", "pos", j + 4),
+				nome,
+				novoEl("td", "num", r.onda),
+				novoEl("td", "num col-frag", fmt.format(r.fragmentos)),
+			);
 			corpo.appendChild(tr);
 		});
+	}
+
+	function render() {
+		renderPodio();
+		renderLista();
 		novos.clear();
 	}
 
@@ -247,13 +430,13 @@
 		nav.hidden = DIMENSOES.length < 2;
 		nav.textContent = "";
 		DIMENSOES.forEach((d) => {
-			const b = document.createElement("button");
-			b.role = "tab";
-			b.textContent = d.nome;
+			const b = novoEl("button", "", d.nome);
+			b.setAttribute("role", "tab");
 			b.setAttribute("aria-selected", d.id === dimensao);
-			b.onclick = () => { dimensao = d.id; renderTabs(); carregar(); };
+			b.onclick = () => { dimensao = d.id; jaCarregou = false; renderTabs(); carregar(); };
 			nav.appendChild(b);
 		});
+		el("podium-title").textContent = DIMENSOES.find((d) => d.id === dimensao).nome.toUpperCase();
 	}
 
 	async function carregar() {
@@ -270,16 +453,16 @@
 			if (!resp.ok) throw new Error("HTTP " + resp.status);
 			const lista = await resp.json();
 			// marca quem entrou ou melhorou desde a última leitura
-			if (ultimaAtualizacao) {
+			if (jaCarregou) {
 				const antes = new Map(ultimaLista.map((r) => [r.jogador_id, r.conquistado_em]));
 				lista.forEach((r) => { if (antes.get(r.jogador_id) !== r.conquistado_em) novos.add(r.jogador_id); });
 			}
 			ultimaLista = lista;
-			ultimaAtualizacao = new Date();
+			jaCarregou = true;
 			render();
-			if (!el("status").classList.contains("live")) setStatus("", "Atualizado");
+			if (!el("status").classList.contains("live")) setStatus("", "ATUALIZANDO A CADA 30 S");
 		} catch (e) {
-			setStatus("erro", "Sem conexão com o servidor. Tentando de novo...");
+			setStatus("erro", "SEM CONEXÃO");
 		}
 	}
 
@@ -293,14 +476,15 @@
 			.channel("ranking-ao-vivo")
 			.on("postgres_changes", { event: "*", schema: "public", table: "ranking" }, () => carregar())
 			.subscribe((estado) => {
-				if (estado === "SUBSCRIBED") setStatus("live", "Ao vivo");
+				if (estado === "SUBSCRIBED") setStatus("live", "AO VIVO");
 				else if (estado === "CHANNEL_ERROR" || estado === "TIMED_OUT" || estado === "CLOSED") {
-					setStatus("", "Atualizando a cada 30 s");
+					setStatus("", "ATUALIZANDO A CADA 30 S");
 				}
 			});
 	}
 
 	renderTabs();
+	render();
 	carregar();
 	conectarAoVivo();
 	setInterval(carregar, 30000);
