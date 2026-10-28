@@ -8,7 +8,7 @@
 <link rel="icon" href="img/spr_Star.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 	:root {
 		--bg: #1a1226;
@@ -31,7 +31,7 @@
 		margin: 0;
 		min-height: 100vh;
 		color: var(--text);
-		font-family: "Nunito", system-ui, sans-serif;
+		font-family: "Poppins", system-ui, sans-serif;
 		font-weight: 700;
 		overflow-x: hidden;
 	}
@@ -75,9 +75,9 @@
 		gap: 16px;
 	}
 	.brand {
-		font-family: "Bangers", sans-serif;
-		font-size: 26px;
-		letter-spacing: 1.5px;
+		font-family: "Poppins", sans-serif; font-weight: 800; text-transform: uppercase;
+		font-size: 21px;
+		letter-spacing: 0.5px;
 		text-decoration: none;
 		white-space: nowrap;
 		transform: rotate(-2deg);
@@ -87,9 +87,9 @@
 	.menu a {
 		text-decoration: none;
 		font-weight: 900;
-		font-size: 14px;
-		letter-spacing: 0.5px;
-		padding: 7px 12px;
+		font-size: 13px;
+		letter-spacing: 0;
+		padding: 7px 9px;
 		border: 3px solid transparent;
 		transform: skewX(-8deg);
 	}
@@ -98,7 +98,7 @@
 	.menu-btn {
 		display: none;
 		margin-left: auto;
-		font: 900 15px "Nunito", sans-serif;
+		font: 900 15px "Poppins", sans-serif;
 		background: #fff;
 		color: var(--ink);
 		border: 3px solid #000;
@@ -130,9 +130,9 @@
 	@keyframes entra { from { opacity: 0; transform: translateY(10px); } }
 
 	/* --- títulos de quadrinho --- */
-	h1, h2, h3 { font-family: "Bangers", sans-serif; font-weight: 400; letter-spacing: 1.5px; }
+	h1, h2, h3 { font-family: "Poppins", sans-serif; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
 	.page-title {
-		font-size: clamp(48px, 9vw, 80px);
+		font-size: clamp(34px, 7vw, 62px);
 		line-height: 0.95;
 		margin: 6px 0 6px;
 		text-align: center;
@@ -162,16 +162,16 @@
 		transform: rotate(-0.5deg);
 	}
 	.panel:nth-of-type(even) { transform: rotate(0.4deg); }
-	.panel h2 { font-size: 32px; margin: 0 0 10px; }
-	.panel h3 { font-size: 23px; margin: 18px 0 6px; }
+	.panel h2 { font-size: 27px; margin: 0 0 10px; }
+	.panel h3 { font-size: 19px; margin: 18px 0 6px; }
 	.panel p { margin: 8px 0; line-height: 1.55; }
 	.panel ul { margin: 8px 0; padding-left: 22px; line-height: 1.6; }
 	.muted { color: var(--ink-muted); }
 	.tag {
 		display: inline-block;
-		font-family: "Bangers", sans-serif;
-		font-size: 17px;
-		letter-spacing: 1px;
+		font-family: "Poppins", sans-serif; font-weight: 800; text-transform: uppercase;
+		font-size: 14px;
+		letter-spacing: 0.5px;
 		padding: 2px 10px;
 		border: 3px solid #000;
 		background: var(--accent);
@@ -202,7 +202,7 @@
 		display: inline-block;
 		min-width: 30px;
 		text-align: center;
-		font: 900 15px "Nunito", sans-serif;
+		font: 900 15px "Poppins", sans-serif;
 		padding: 3px 9px;
 		background: #fff;
 		border: 3px solid #000;
@@ -214,7 +214,7 @@
 	.btn {
 		display: inline-block;
 		text-decoration: none;
-		font: 900 17px "Nunito", sans-serif;
+		font: 900 17px "Poppins", sans-serif;
 		letter-spacing: 0.5px;
 		color: var(--ink);
 		background: #fff;
@@ -231,7 +231,7 @@
 
 	/* --- início --- */
 	.hero { text-align: center; padding: clamp(120px, 20vw, 240px) 0 10px; }
-	.hero .page-title { font-size: clamp(52px, 10vw, 100px); }
+	.hero .page-title { font-size: clamp(36px, 7.5vw, 74px); }
 	.hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 22px 0 36px; }
 	.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 	.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
@@ -249,12 +249,12 @@
 	}
 	.card:hover { transform: translate(-2px, -3px) rotate(-1deg); }
 	.card img { width: 96px; height: 96px; object-fit: contain; }
-	.card h3 { margin: 6px 0 2px; font-size: 25px; }
+	.card h3 { margin: 6px 0 2px; font-size: 20px; }
 	.card p { margin: 4px 0 0; font-size: 14px; color: var(--ink-muted); }
 	.section-label {
-		font-family: "Bangers", sans-serif;
-		font-size: 34px;
-		letter-spacing: 1.5px;
+		font-family: "Poppins", sans-serif; font-weight: 800; text-transform: uppercase;
+		font-size: 28px;
+		letter-spacing: 0.5px;
 		margin: 34px 0 14px;
 		text-shadow: 3px 3px 0 #000;
 	}
@@ -333,7 +333,7 @@
 		left: 0;
 		right: 0;
 		text-align: center;
-		font-family: "Bangers", sans-serif;
+		font-family: "Poppins", sans-serif; font-weight: 800; text-transform: uppercase;
 		font-size: clamp(15px, 3vw, 26px);
 		letter-spacing: 2px;
 		color: var(--ink-muted);
@@ -341,7 +341,7 @@
 	.place { text-align: center; min-width: 0; display: flex; flex-direction: column; align-items: center; }
 	.place img.star { width: clamp(30px, 6vw, 52px); height: auto; filter: drop-shadow(2px 2px 0 #000); }
 	.place.p1 img.star { width: clamp(46px, 9.5vw, 84px); }
-	.place .rank { font-family: "Bangers", sans-serif; font-size: clamp(16px, 3.2vw, 28px); line-height: 1; margin-top: 2px; }
+	.place .rank { font-family: "Poppins", sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(16px, 3.2vw, 28px); line-height: 1; margin-top: 2px; }
 	.place .who {
 		font-weight: 900;
 		font-size: clamp(13px, 2.6vw, 22px);
@@ -361,7 +361,7 @@
 	.board { margin-top: 22px; padding: 0; }
 	.board td { font-size: 18px; font-weight: 800; padding: 11px 14px; vertical-align: middle; }
 	.board th { padding: 16px 14px 10px; }
-	.pos { width: 62px; text-align: center; font-family: "Bangers", sans-serif; font-weight: 400; font-size: 22px; }
+	.pos { width: 62px; text-align: center; font-family: "Poppins", sans-serif; font-weight: 800; font-size: 22px; }
 	.name { overflow-wrap: anywhere; }
 	.when { display: block; font-size: 12px; font-weight: 700; color: #8a8199; }
 	tr.novo td { animation: flash 2s ease-out; }
