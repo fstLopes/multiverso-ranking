@@ -1,4 +1,4 @@
-// Inimigos com os valores da v0.78 do jogo.
+// Inimigos com os valores da v0.79 do jogo.
 // Quando o jogo mudar, atualize aqui.
 
 const INIMIGOS = [
