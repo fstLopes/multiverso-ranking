@@ -1,4 +1,4 @@
-// Heróis (torres) com os valores da v0.79 do jogo.
+// Heróis (torres) com os valores da v0.80 do jogo.
 // Quando o jogo mudar, atualize aqui.
 
 const TORRES = [
@@ -14,7 +14,7 @@ const TORRES = [
 	{
 		id: "torre-donabala", nome: "Dona Bala", sprite: "img/herois/spr_Tower_DonaBala.png", tecla: "2", tag: "EXPLOSÃO EM ÁREA",
 		historia: "Senhora aparentemente comum que carrega armas absurdas dentro da bolsa. Cada disparo é uma explosão em volta dela.",
-		stats: [["CUSTO", "50"], ["DANO", "9,75 em área"], ["INTERVALO", "2,0 s"], ["ALCANCE", "50"]],
+		stats: [["CUSTO", "50"], ["DANO", "11,7 em área"], ["INTERVALO", "2,0 s"], ["ALCANCE", "50"]],
 		efeito: "Acerta todo mundo dentro do raio, ótima onde os inimigos se juntam.",
 		especial: ["Tiro de Misericórdia", "A partir do Poder 3 a explosão tem 20% de chance de atordoar por 0,6 s (+10% por nível). No Poder 5 a explosão fica 25% maior."],
 		formas: ["Vovó Armada", "Bolsa de Truques", "Arsenal Ambulante", "Terror do Bairro", "Arma Secreta Definitiva"],
@@ -23,8 +23,8 @@ const TORRES = [
 	{
 		id: "torre-impacto", nome: "Doutor Impacto", sprite: "img/herois/spr_Tower_Impacto.png", tecla: "3", tag: "CONTROLE",
 		historia: "Cientista que criou um traje poderoso, mas não sabe exatamente como ele funciona. O pulso do traje desestabiliza os inimigos.",
-		stats: [["CUSTO", "100"], ["DANO", "nenhum"], ["INTERVALO", "0,9 s"], ["ALCANCE", "67,5"]],
-		efeito: "Quem é atingido anda a 70% da velocidade. Não causa dano: segura os inimigos para as outras torres.",
+		stats: [["CUSTO", "100"], ["DANO", "nenhum"], ["INTERVALO", "0,9 s"], ["ALCANCE", "135"]],
+		efeito: "Quem é atingido fica mais lento: 30% no Poder 1, até 45% no Poder 5. No infinito ganha +1% por nível, até 50%. Não causa dano: segura os inimigos para as outras torres.",
 		especial: ["Sobrecarga do Traje", "O pulso alcança bem mais longe a cada melhoria."],
 		formas: ["Estagiário do Caos", "Cientista Instável", "Traje em Sobrecarga", "Anomalia Ambulante", "Impacto Além da Compreensão"],
 		melhorias: ["100 (construir)", "120", "336", "840", "2.160"],
