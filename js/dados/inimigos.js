@@ -1,4 +1,4 @@
-// Inimigos com os valores da v0.81 do jogo.
+// Inimigos com os valores da v0.82 do jogo.
 // dimensao: em qual lista da página Inimigos a ficha aparece.
 // Quando o jogo mudar, atualize aqui.
 
