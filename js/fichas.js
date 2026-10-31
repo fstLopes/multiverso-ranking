@@ -61,8 +61,8 @@ function montarTorres() {
 }
 
 function montarInimigos() {
-	const alvo = el("lista-inimigos");
 	INIMIGOS.forEach((m) => {
+		const alvo = el("lista-inimigos-" + m.dimensao);
 		const { painel, corpo } = fichaBase(m);
 		corpo.append(caixaEspecial(m.habilidade[0], m.habilidade[1]));
 		const dica = novoEl("p");

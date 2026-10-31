@@ -114,3 +114,8 @@ footer.site {
 }
 
 .sub-ranking { margin-bottom: 14px; }
+
+/* abas de dimensão (Metrópolis Prime, Cartoon) */
+.abas-dim { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
+.aba-dim { font-size: 15px; padding: 8px 18px; color: var(--ink-muted); }
+.aba-dim[aria-pressed="true"] { background: var(--accent); color: var(--ink); }
