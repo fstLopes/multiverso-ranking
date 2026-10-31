@@ -22,6 +22,7 @@ carregarPaginas()
 	.then(() => {
 		montarTorres();
 		montarInimigos();
+		montarAbasDimensao();
 		render();
 		window.addEventListener("hashchange", navegar);
 		navegar();

@@ -61,3 +61,6 @@
 
 .panel p.acao { margin-top: 14px; }
 .panel h2.titulo-chefe { margin-top: 8px; }
+
+/* nome da dimensão ao lado do TOP 3 da página inicial */
+.muted-label { font-size: 18px; text-shadow: 2px 2px 0 #000; opacity: 0.85; }

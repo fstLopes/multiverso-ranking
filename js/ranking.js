@@ -2,6 +2,7 @@
 
 let ultimaLista = [];
 let jaCarregou = false;
+let dimensaoAtual = DIMENSOES[0].id;
 const novos = new Set();
 const fmt = new Intl.NumberFormat("pt-BR");
 
@@ -90,6 +91,43 @@ function renderMiniTop() {
 	});
 }
 
+function nomeDimensao(id) {
+	const d = DIMENSOES.find((x) => x.id === id);
+	return d ? d.nome : id;
+}
+
+// abas de dimensão da página do ranking
+function montarAbasDimensao() {
+	const caixa = el("abas-dim");
+	DIMENSOES.forEach((d) => {
+		const b = novoEl("button", "btn aba-dim", d.nome.toUpperCase());
+		b.type = "button";
+		b.dataset.dim = d.id;
+		b.addEventListener("click", () => trocarDimensao(d.id));
+		caixa.append(b);
+	});
+	marcarDimensao();
+}
+
+function marcarDimensao() {
+	document.querySelectorAll(".aba-dim").forEach((b) => {
+		b.setAttribute("aria-pressed", String(b.dataset.dim === dimensaoAtual));
+	});
+	el("podium-title").textContent = nomeDimensao(dimensaoAtual);
+	el("mini-dim").textContent = nomeDimensao(dimensaoAtual);
+}
+
+function trocarDimensao(id) {
+	if (id === dimensaoAtual) return;
+	dimensaoAtual = id;
+	ultimaLista = [];
+	jaCarregou = false;
+	novos.clear();
+	marcarDimensao();
+	render();
+	carregar();
+}
+
 function render() {
 	renderPodio();
 	renderLista();
@@ -98,9 +136,11 @@ function render() {
 }
 
 async function carregar() {
+	// se a aba mudar no meio da leitura, a resposta antiga é descartada
+	const dim = dimensaoAtual;
 	const q = new URLSearchParams({
 		select: "jogador_id,apelido,onda,fragmentos,conquistado_em",
-		dimensao: "eq." + DIMENSAO,
+		dimensao: "eq." + dimensaoAtual,
 		order: "onda.desc,fragmentos.desc,conquistado_em.asc",
 		limit: String(LIMITE),
 	});
@@ -110,6 +150,7 @@ async function carregar() {
 		});
 		if (!resp.ok) throw new Error("HTTP " + resp.status);
 		const lista = await resp.json();
+		if (dim !== dimensaoAtual) return;
 		// marca quem entrou ou melhorou desde a última leitura
 		if (jaCarregou) {
 			const antes = new Map(ultimaLista.map((r) => [r.jogador_id, r.conquistado_em]));
