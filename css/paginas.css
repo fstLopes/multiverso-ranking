@@ -5,8 +5,15 @@
 .hero .page-title { font-size: clamp(36px, 7.5vw, 74px); }
 .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 22px 0 36px; }
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+@media (max-width: 960px) { .grid4 { grid-template-columns: 1fr 1fr; } }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
 @media (max-width: 760px) { .grid3, .grid2 { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .grid4 { grid-template-columns: 1fr; } }
+.galeria { display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0; }
+.galeria figure { margin: 0; border: 3px solid #000; background: #fff; padding: 6px 10px; text-align: center; }
+.galeria img { width: 64px; height: 64px; object-fit: contain; display: block; margin: 0 auto; }
+.galeria figcaption { font-size: 13px; font-weight: 700; }
 .card {
 	display: block;
 	text-decoration: none;

@@ -36,9 +36,21 @@ function montarTorres() {
 	const alvo = el("lista-torres");
 	TORRES.forEach((t) => {
 		const { painel, corpo } = fichaBase(t);
-		const efeito = novoEl("p");
-		efeito.append(document.createTextNode(t.efeito + " Atalho: "), novoEl("kbd", "", t.tecla));
-		corpo.append(efeito, caixaEspecial(t.especial[0], t.especial[1]));
+		corpo.append(novoEl("p", "", t.efeito), caixaEspecial(t.especial[0], t.especial[1]));
+
+		// formas alienígenas do Menino Alien (e de quem mais tiver)
+		if (t.galeria) {
+			const gal = novoEl("div", "galeria");
+			t.galeria.forEach(([src, nome]) => {
+				const fig = novoEl("figure");
+				const im = novoEl("img", "px");
+				im.src = src;
+				im.alt = nome;
+				fig.append(im, novoEl("figcaption", "", nome));
+				gal.append(fig);
+			});
+			corpo.append(gal);
+		}
 
 		corpo.append(novoEl("h3", "", "Formas e preços"));
 		const wrap = novoEl("div", "tbl-wrap");
