@@ -1,4 +1,4 @@
-// Inimigos com os valores da v0.83 do jogo.
+// Inimigos com os valores da v0.87 do jogo.
 // dimensao: em qual lista da página Inimigos a ficha aparece.
 // Quando o jogo mudar, atualize aqui.
 
@@ -35,9 +35,9 @@ const INIMIGOS = [
 	{
 		dimensao: "cartoon", id: "inimigo-apagador", nome: "Apagador", sprite: "img/inimigos/spr_Enemy_Explicador.png", tag: "CARTOON",
 		historia: "Uma borracha viva que sai apagando o que vê pela frente, inclusive heróis.",
-		stats: [["APARECE", "3 em cada 6"], ["VIDA", "normal"], ["VELOCIDADE", "normal"], ["RECOMPENSA", "1,15x"]],
+		stats: [["TIPO", "AÉREO"], ["APARECE", "3 em cada 6"], ["VIDA", "normal"], ["VELOCIDADE", "normal"], ["RECOMPENSA", "1,15x"]],
 		habilidade: ["Interferência", "A cada 3 segundos apaga a torre mais próxima (até 90 de distância) por 1 segundo. A torre fica cinza e não atira. Depois de voltar, fica 1,5 segundo imune."],
-		dica: "Espalhe as torres: uma defesa que depende de uma torre só para de atirar na pior hora.",
+		dica: "Ele voa: só Arauto e Labareda acertam. Espalhe as torres, porque uma defesa que depende de uma torre só para de atirar na pior hora.",
 	},
 	{
 		dimensao: "cartoon", id: "inimigo-desenhao", nome: "Desenhão", sprite: "img/inimigos/spr_Boss_Catalisador.png", tag: "TANQUE",
@@ -45,5 +45,27 @@ const INIMIGOS = [
 		stats: [["APARECE", "1 em cada 6"], ["VIDA", "2,5x + 5"], ["VELOCIDADE", "0,6x"], ["RECOMPENSA", "1,3x"]],
 		habilidade: ["Resistente", "Aguenta muito dano. A versão chefe, o Desenhão Colossal, tem o mesmo escudo e a mesma regeneração do Monstro Genérico."],
 		dica: "Dona Bala e Arauto em Poder alto, com o Doutor Impacto segurando.",
+	},
+	// --- Reino do Avesso (voltou na v0.87). Ainda usam as artes de Metrópolis. ---
+	{
+		dimensao: "avesso", id: "inimigo-goblin", nome: "Goblin Estagiário", sprite: "img/inimigos/spr_Enemy_Clone.png", tag: "AVESSO",
+		historia: "Pequeno, apressado e sem a menor ideia do que está fazendo.",
+		stats: [["TIPO", "TERRESTRE"], ["APARECE", "2 em cada 6"], ["VIDA", "0,7x"], ["VELOCIDADE", "1,1x a 1,6x"], ["RECOMPENSA", "1,1x"]],
+		habilidade: ["Correria", "Frágil, mas cada um sai numa velocidade diferente, e os mais rápidos passam da defesa se ela estiver longe da rota."],
+		dica: "Doutor Impacto na entrada da rota segura os mais rápidos.",
+	},
+	{
+		dimensao: "avesso", id: "inimigo-cavaleiro", nome: "Cavaleiro Sem Missão", sprite: "img/inimigos/spr_Enemy_Explicador.png", tag: "AVESSO",
+		historia: "Saiu para uma missão importante e esqueceu qual era no meio do caminho.",
+		stats: [["TIPO", "TERRESTRE"], ["APARECE", "3 em cada 6"], ["VIDA", "normal"], ["VELOCIDADE", "0,9x"], ["RECOMPENSA", "1,2x"]],
+		habilidade: ["Esqueceu", "Para uma vez no caminho por 2 segundos, como o Vilão Explicador, e leva 50% a mais de dano enquanto está parado."],
+		dica: "Concentre o fogo quando ele parar.",
+	},
+	{
+		dimensao: "avesso", id: "inimigo-dragao", nome: "Dragão de Aluguel", sprite: "img/inimigos/spr_Boss_Catalisador.png", tag: "TANQUE",
+		historia: "Um dragão contratado por hora. Lento, caro e muito resistente. A cada 10 ondas, o maior deles é o chefe.",
+		stats: [["TIPO", "AÉREO"], ["APARECE", "1 em cada 6"], ["VIDA", "2,5x + 5"], ["VELOCIDADE", "0,6x"], ["RECOMPENSA", "1,35x"]],
+		habilidade: ["Voa", "Passa por cima da rota: Dona Bala, Doutor Impacto e o Acelerado não acertam nele. Só Arauto e Labareda."],
+		dica: "Monte Arauto e Labareda em Poder alto perto das curvas.",
 	},
 ];
