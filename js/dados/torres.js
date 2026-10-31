@@ -1,4 +1,4 @@
-// Heróis (torres) com os valores da v0.83 do jogo.
+// Heróis (torres) com os valores da v0.84 do jogo.
 // Quando o jogo mudar, atualize aqui.
 
 const TORRES = [
@@ -38,5 +38,15 @@ const TORRES = [
 		galeria: [["img/herois/spr_Tower_MeninoAlien.png", "Forma normal"], ["img/herois/spr_Tower_Acelerado.png", "Acelerado"], ["img/herois/spr_Tower_Labareda.png", "Labareda"]],
 		formas: ["Garoto do Relógio", "Acelerado Novato", "Acelerado Supersônico", "Herói Alienígena", "Mestre das Formas"],
 		melhorias: ["80 (construir)", "110", "308", "770", "1.980"],
+	},
+	{
+		id: "torre-trigemeas", nome: "Trigêmeas", sprite: "img/herois/spr_Tower_Trigemeas3.png", tag: "SUPORTE",
+		historia: "Três irmãs que voam juntas. A Rosinha começa sozinha, a Bonitinha chega no Poder 3 e a Fofinha no Poder 5. Elas não atacam: rendem fragmentos e deixam a equipe em volta mais forte.",
+		stats: [["CUSTO", "250"], ["DANO", "nenhum"], ["FRAGMENTOS", "+300 por onda (10.000 no Poder 5)"], ["ALCANCE DA AURA", "110"]],
+		efeito: "Fragmentos a cada onda limpa: 300 (Poder 1 e 2), 1.000 (Poder 3), 3.000 (Poder 4) e 10.000 (Poder 5). O Poder máximo é 5 em qualquer modo, inclusive no infinito.",
+		especial: ["Bonitinha e Fofinha", "Poder 3 e 4: as unidades dentro da aura ganham +10% de alcance. Poder 5: +50% de alcance e +40% de dano. Os buffs somam: uma unidade na aura de duas Trigêmeas recebe os dois."],
+		galeria: [["img/herois/spr_Tower_Trigemeas1.png", "Poder 1-2: Rosinha"], ["img/herois/spr_Tower_Trigemeas2.png", "Poder 3-4: com a Bonitinha"], ["img/herois/spr_Tower_Trigemeas3.png", "Poder 5: com a Fofinha"]],
+		formas: ["Rosinha", "Rosinha Determinada", "Rosinha e Bonitinha", "Dupla Imbatível", "Trigêmeas Completas"],
+		melhorias: ["250 (construir)", "300", "1.500", "4.000", "12.000"],
 	},
 ];
