@@ -7,4 +7,5 @@ const LIMITE = 50;
 const DIMENSOES = [
 	{ id: "metropolis", nome: "Metrópolis Prime" },
 	{ id: "cartoon", nome: "Cartoon" },
+	{ id: "avesso", nome: "Reino do Avesso" },
 ];
