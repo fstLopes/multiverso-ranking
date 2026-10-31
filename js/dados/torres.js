@@ -1,4 +1,4 @@
-// Heróis (torres) com os valores da v0.84 do jogo.
+// Heróis (torres) com os valores da v0.85 do jogo.
 // Quando o jogo mudar, atualize aqui.
 
 const TORRES = [
@@ -34,7 +34,7 @@ const TORRES = [
 		historia: "Garoto com um relógio alienígena que o transforma em outros heróis. Parado fica na forma normal, e na hora de atacar vira um alienígena.",
 		stats: [["CUSTO", "80"], ["DANO", "9 (275 no Poder 5)"], ["INTERVALO", "1,2 s"], ["ALCANCE", "110"]],
 		efeito: "Acelerado: avança numa investida e acerta até 5 inimigos, um depois do outro (cada um a até 90 px do anterior), e volta para o lugar. O intervalo conta depois que ele volta. Escolhe o primeiro alvo pela prioridade (tecla A).",
-		especial: ["Labareda (Poder 5)", "Bolas de fogo de longe (alcance 50% maior) que perseguem o alvo e deixam o inimigo queimando: 300% do dano ao longo de 5 segundos. Troque entre Acelerado e Labareda na aba FORMA do painel de melhoria ou com a tecla R."],
+		especial: ["Labareda (Poder 5)", "Bolas de fogo de longe (alcance 50% maior) que perseguem o alvo e explodem ao acertar: todos os inimigos num raio de 48 px levam o dano e ficam queimando, com 300% do dano ao longo de 5 segundos. Troque entre Acelerado e Labareda na aba FORMA do painel de melhoria ou com a tecla R."],
 		galeria: [["img/herois/spr_Tower_MeninoAlien.png", "Forma normal"], ["img/herois/spr_Tower_Acelerado.png", "Acelerado"], ["img/herois/spr_Tower_Labareda.png", "Labareda"]],
 		formas: ["Garoto do Relógio", "Acelerado Novato", "Acelerado Supersônico", "Herói Alienígena", "Mestre das Formas"],
 		melhorias: ["80 (construir)", "110", "308", "770", "1.980"],
