@@ -55,10 +55,10 @@ const INIMIGOS = [
 	},
 	{
 		dimensao: "cartoon", id: "inimigo-pickles", nome: "Pickles Maléfico", sprite: "img/inimigos/spr_Enemy_PicklesMalefico.png", tag: "CARTOON",
-		historia: "Pequeno, verde e cheio de planos. Sozinho não assusta ninguém, mas no meio do grupo deixa todo mundo de pé.",
+		historia: "Pequeno, verde e cheio de planos para roubar o que não é dele.",
 		stats: [["TIPO", "TERRESTRE"], ["APARECE", "1 em cada 6"], ["VIDA", "0,75x"], ["VELOCIDADE", "0,9x"], ["RECOMPENSA", "1,3x"]],
-		habilidade: ["Cura", "A cada 3 segundos cura 8% da vida máxima dos inimigos num raio de 80, menos a dele e a do chefe."],
-		dica: "Derrube ele primeiro, senão o grupo em volta não cai nunca.",
+		habilidade: ["Plano maligno", "A cada 4 segundos rouba fragmentos seus (2 + metade da onda). Se você derrubar ele, recebe tudo de volta. Se ele chegar à base, leva junto."],
+		dica: "Derrube ele rápido: quanto mais tempo vivo, mais fragmentos ele leva.",
 	},
 	// --- Reino do Avesso (voltou na v0.87). Ainda usam as artes de Metrópolis. ---
 	{
