@@ -1,4 +1,4 @@
-// Inimigos com os valores da v0.87 do jogo.
+// Inimigos com os valores da v0.89 do jogo.
 // dimensao: em qual lista da página Inimigos a ficha aparece.
 // Quando o jogo mudar, atualize aqui.
 
@@ -28,23 +28,37 @@ const INIMIGOS = [
 	{
 		dimensao: "cartoon", id: "inimigo-bomba", nome: "Bomba com Pernas", sprite: "img/inimigos/spr_Enemy_Clone.png", tag: "CARTOON",
 		historia: "Uma bomba de desenho animado que criou pernas e decidiu correr.",
-		stats: [["APARECE", "2 em cada 6"], ["VIDA", "0,6x"], ["VELOCIDADE", "1,3x"], ["RECOMPENSA", "1,4x"]],
+		stats: [["APARECE", "1 em cada 6"], ["VIDA", "0,6x"], ["VELOCIDADE", "1,3x"], ["RECOMPENSA", "1,4x"]],
 		habilidade: ["Explode na base", "Se chegar ao fim do caminho, tira 2 vidas em vez de 1."],
 		dica: "É frágil: Arauto perto da rota derruba antes que ela chegue. Nunca deixe uma passar.",
 	},
 	{
 		dimensao: "cartoon", id: "inimigo-apagador", nome: "Apagador", sprite: "img/inimigos/spr_Enemy_Explicador.png", tag: "CARTOON",
 		historia: "Uma borracha viva que sai apagando o que vê pela frente, inclusive heróis.",
-		stats: [["TIPO", "AÉREO"], ["APARECE", "3 em cada 6"], ["VIDA", "normal"], ["VELOCIDADE", "normal"], ["RECOMPENSA", "1,15x"]],
+		stats: [["TIPO", "AÉREO"], ["APARECE", "2 em cada 6"], ["VIDA", "normal"], ["VELOCIDADE", "normal"], ["RECOMPENSA", "1,15x"]],
 		habilidade: ["Interferência", "A cada 3 segundos apaga a torre mais próxima (até 90 de distância) por 1 segundo. A torre fica cinza e não atira. Depois de voltar, fica 1,5 segundo imune."],
 		dica: "Ele voa: só Arauto e Labareda acertam. Espalhe as torres, porque uma defesa que depende de uma torre só para de atirar na pior hora.",
 	},
 	{
 		dimensao: "cartoon", id: "inimigo-desenhao", nome: "Desenhão", sprite: "img/inimigos/spr_Boss_Catalisador.png", tag: "TANQUE",
-		historia: "Um rabisco gigante, lento e teimoso. A cada 10 ondas, a versão colossal dele é o chefe.",
+		historia: "Um rabisco gigante, lento e teimoso.",
 		stats: [["APARECE", "1 em cada 6"], ["VIDA", "2,5x + 5"], ["VELOCIDADE", "0,6x"], ["RECOMPENSA", "1,3x"]],
-		habilidade: ["Resistente", "Aguenta muito dano. A versão chefe, o Desenhão Colossal, tem o mesmo escudo e a mesma regeneração do Monstro Genérico."],
+		habilidade: ["Resistente", "Aguenta muito dano."],
 		dica: "Dona Bala e Arauto em Poder alto, com o Doutor Impacto segurando.",
+	},
+	{
+		dimensao: "cartoon", id: "inimigo-piramide", nome: "Pirâmide Astral", sprite: "img/inimigos/spr_Enemy_PiramideAstral.png", tag: "CARTOON",
+		historia: "Um triângulo de outra dimensão, de olho em tudo, que não respeita as regras do espaço.",
+		stats: [["TIPO", "AÉREO"], ["APARECE", "1 em cada 6"], ["VIDA", "0,8x"], ["VELOCIDADE", "1,15x"], ["RECOMPENSA", "1,25x"]],
+		habilidade: ["Teletransporte", "A cada 4 segundos some e reaparece 60 px à frente na rota. Atordoada não consegue pular."],
+		dica: "Ela voa: só Arauto e Labareda acertam. Ponha eles perto do fim da rota, porque ela pula a primeira linha de defesa.",
+	},
+	{
+		dimensao: "cartoon", id: "inimigo-pickles", nome: "Pickles Maléfico", sprite: "img/inimigos/spr_Enemy_PicklesMalefico.png", tag: "CARTOON",
+		historia: "Pequeno, verde e cheio de planos. Sozinho não assusta ninguém, mas no meio do grupo deixa todo mundo de pé.",
+		stats: [["TIPO", "TERRESTRE"], ["APARECE", "1 em cada 6"], ["VIDA", "0,75x"], ["VELOCIDADE", "0,9x"], ["RECOMPENSA", "1,3x"]],
+		habilidade: ["Cura", "A cada 3 segundos cura 8% da vida máxima dos inimigos num raio de 80, menos a dele e a do chefe."],
+		dica: "Derrube ele primeiro, senão o grupo em volta não cai nunca.",
 	},
 	// --- Reino do Avesso (voltou na v0.87). Ainda usam as artes de Metrópolis. ---
 	{
